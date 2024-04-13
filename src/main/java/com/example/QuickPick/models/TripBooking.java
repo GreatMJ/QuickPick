@@ -29,5 +29,10 @@ public class TripBooking {
     Date bookedOn;
 
     @ManyToOne
+            @JoinColumn(name = "customer_id")
     Customer customer;
+
+    @ManyToOne
+            @JoinColumn(name = "driver_id")
+    Driver driver;
 }
