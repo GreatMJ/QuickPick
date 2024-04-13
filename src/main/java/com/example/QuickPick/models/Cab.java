@@ -23,7 +23,7 @@ public class Cab {
    int numberOfSeats;
 
    double farePerKm;
-
-
+@OneToOne(mappedBy = "cab",cascade = CascadeType.ALL)
+  Driver driver;
 
 }

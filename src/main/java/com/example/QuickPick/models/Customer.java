@@ -31,7 +31,7 @@ public class Customer {
     @Enumerated(EnumType.STRING)
     Gender gender;
 
-    @OneToMany
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     List<TripBooking> bookings;
 
 }

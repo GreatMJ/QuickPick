@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -21,4 +23,12 @@ public class Driver {
     String mobNo;
 
     double rating;
+
+    @OneToOne
+            @JoinColumn(name = "cab_id")  // mention join column annotation in table in which you wanna have join column
+
+    Cab cab;
+
+    @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL)
+    List<TripBooking> trips;
 }
