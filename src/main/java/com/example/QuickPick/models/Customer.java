@@ -14,6 +14,7 @@ import java.util.List;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Table(name = "customer")
+@Builder
 public class Customer {
 
     @Id
