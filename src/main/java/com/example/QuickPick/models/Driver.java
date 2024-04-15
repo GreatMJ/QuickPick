@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 public class Driver {
     @Id
             @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +25,7 @@ public class Driver {
 
     double rating;
 
-    @OneToOne
-            @JoinColumn(name = "cab_id")  // mention join column annotation in table in which you wanna have join column
-
+    @OneToOne(mappedBy = "driver",cascade = CascadeType.ALL)
     Cab cab;
 
     @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL)
