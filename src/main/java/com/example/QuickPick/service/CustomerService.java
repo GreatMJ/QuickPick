@@ -11,8 +11,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerService {
 
-    @Autowired
-    CustomerRepository customerRepository;
+//    @Autowired
+//    CustomerRepository customerRepository;   field injection
+
+    private final CustomerRepository customerRepository;
+
+    public CustomerService(CustomerRepository customerRepository) {    // constructior injection
+        this.customerRepository = customerRepository;
+    }
+
 
     public CustomerResponse addCustomer(CustomerRequest customerRequest){
         // dto-->entity

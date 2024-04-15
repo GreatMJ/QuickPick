@@ -15,11 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/customer")
 public class CustomerController {
 
-    @Autowired
-    CustomerService customerService;
+//    @Autowired
+//    CustomerService customerService;
+
+    private  final  CustomerService customerService;
+
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
 
-@PostMapping
+    @PostMapping
     public ResponseEntity<CustomerResponse> addCustomer(@RequestBody CustomerRequest customerRequest){
          CustomerResponse customerResponse= customerService.addCustomer(customerRequest);
           return new  ResponseEntity<>(customerResponse, HttpStatus.CREATED);

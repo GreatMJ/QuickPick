@@ -11,6 +11,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 public class Cab {
 @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +22,11 @@ public class Cab {
    @Enumerated(EnumType.STRING)
     CarType carType;
    int numberOfSeats;
+   String cabNo;
 
    double farePerKm;
-@OneToOne(mappedBy = "cab",cascade = CascadeType.ALL)
+@OneToOne
+@JoinColumn(name = "driver_id")  // mention join column annotation in table in which you wanna have join column
   Driver driver;
 
 }
