@@ -1,6 +1,5 @@
 package com.example.QuickPick.dto.response;
 
-import jakarta.persistence.Column;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -10,10 +9,10 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-public class DriverResponse {
-    String name;
-    int age;
-    double rating;
-    String mobNo;
-    CabResponse cabResponse;
+public class CabResponse {
+    String cabNo;
+
+    String carModel;
+
+    double farePerKm;
 }

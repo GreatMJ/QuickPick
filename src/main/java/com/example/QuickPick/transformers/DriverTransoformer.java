@@ -19,8 +19,9 @@ public class DriverTransoformer {
       return DriverResponse.builder()
               .name(driver.getName())
               .age(driver.getAge())
-              .panNumber(driver.getPanNumber())
+              .rating(driver.getRating())
               .mobNo(driver.getMobNo())
+              .cabResponse(CabTransformer.cabToCabResponse(driver.getCab()))
               .build();
   }
 }

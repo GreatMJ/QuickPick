@@ -14,12 +14,14 @@ import java.util.Date;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 public class TripBooking {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
-    String source;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
+    String  bookingId;
+    String pickUp;
     String destination;
     double tripDistanceInKm;
     double totalFare;
