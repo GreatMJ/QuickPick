@@ -37,8 +37,6 @@ public class DriverController {
           String errorMessage=resourceNotFoundException.getMessage();
 
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
-
-
         }
 
         return new ResponseEntity<>("Driver successfully deleted.",HttpStatus.OK);

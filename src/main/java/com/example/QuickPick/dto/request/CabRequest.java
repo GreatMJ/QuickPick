@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CabRequest {
+public class CabRequest  {
 
     String company;
 

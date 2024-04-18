@@ -19,6 +19,8 @@ public class Cab {
 
     String company;
     String carModel;
+
+    boolean available;
    @Enumerated(EnumType.STRING)
     CarType carType;
    int numberOfSeats;
