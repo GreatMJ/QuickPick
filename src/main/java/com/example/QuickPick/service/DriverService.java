@@ -14,8 +14,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class DriverService {
 
-//    @Autowired
-//    DriverRepository driverRepository;
 
     private final DriverRepository driverRepository;
 
@@ -38,30 +36,5 @@ public class DriverService {
         return "Driver and Cab saved successfully!";
     }
 
-    // DELETE DRIVER
 
-    public DriverResponse deleteDriverByMobileNumber(String mobNo){
-
-        // check weather the driver with given number is registered or not
-      //  Boolean isDriverPresent=driverRepository.existsByMobNo(mobNo);
-
-//        if(!isDriverPresent){
-//            throw new ResourceNotFoundException(String.format("Sorry, there is no driver registered in our system with the mobile number: %s",mobNo));
-//        }
-        // get the required driver from database
-        Driver driver= driverRepository.findByMobNo(mobNo);
-
-        if(driver==null){
-          throw new ResourceNotFoundException(String.format("Sorry, there is no driver registered in our system with the mobile number: %s",mobNo));
-     }
-
-        // convert to driverResponse
-        DriverResponse driverResponse=DriverTransoformer.driverToDriverResponse(driver);
-
-        //delete the driver
-
-        driverRepository.delete(driver);
-
-        return driverResponse;
-    }
 }

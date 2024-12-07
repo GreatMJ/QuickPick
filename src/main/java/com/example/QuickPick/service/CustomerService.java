@@ -3,6 +3,7 @@ package com.example.QuickPick.service;
 import com.example.QuickPick.dto.request.CustomerRequest;
 import com.example.QuickPick.dto.response.CustomerResponse;
 import com.example.QuickPick.enums.Gender;
+import com.example.QuickPick.exception.ResourceNotFoundException;
 import com.example.QuickPick.models.Customer;
 import com.example.QuickPick.repository.CustomerRepository;
 import com.example.QuickPick.transformers.CustomerTransformer;
@@ -40,7 +41,11 @@ public class CustomerService {
     public List<CustomerResponse> getCustomerByGenderAndAgeGreaterThan(Gender gender, int age){
         List<Customer> customers=customerRepository.getCustomerByGenderAndAgeGreaterThan( gender, age);
 
-        List<CustomerResponse> customerResponses=new ArrayList<>();
+        // handle empty list
+        if(customers==null||customers.isEmpty()) throw new ResourceNotFoundException("No customers found matching the selected filter criteria.");
+
+        // initialize the list
+        List<CustomerResponse> customerResponses=new ArrayList<>(customers.size());
         for(Customer customer :customers){
             CustomerResponse customerResponse=CustomerTransformer.customerToCustomerResponse(customer);
             customerResponses.add(customerResponse);

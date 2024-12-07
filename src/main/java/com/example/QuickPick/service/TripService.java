@@ -4,6 +4,7 @@ import com.example.QuickPick.dto.request.TripRequest;
 import com.example.QuickPick.dto.response.TripResponse;
 import com.example.QuickPick.enums.TripStatus;
 import com.example.QuickPick.exception.CustomerNotFoundException;
+import com.example.QuickPick.exception.NoCabsAvailableException;
 import com.example.QuickPick.exception.ResourceNotFoundException;
 import com.example.QuickPick.models.*;
 import com.example.QuickPick.repository.*;
@@ -43,7 +44,7 @@ public class TripService {
         Cab cab=cabRepository.getAvailableCab();
 
         if(cab==null){
-            throw new ResourceNotFoundException("Sorry! All drivers are busy right now!!");
+            throw new NoCabsAvailableException("Sorry! No any cab is available right now.");
         }
 
         // now book the trip
