@@ -16,9 +16,6 @@ import java.util.List;
 @Service
 public class CustomerService {
 
-//    @Autowired
-//    CustomerRepository customerRepository;   field injection
-
     private final CustomerRepository customerRepository;
 
     public CustomerService(CustomerRepository customerRepository) {    // constructior injection
@@ -52,6 +49,36 @@ public class CustomerService {
         }
 
         return  customerResponses;
+    }
+
+    // method to get customer by id
+    public CustomerResponse getById(Integer id){
+        Customer customer=customerRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(String.format("Customer with id: %d not found.",id)));
+        return CustomerTransformer.customerToCustomerResponse(customer);
+    }
+
+    // method to get all customers
+    public List<CustomerResponse> getAll(){
+        List<Customer> customers=customerRepository.findAll();
+        // handle empty list
+        if(customers==null||customers.isEmpty()) throw new ResourceNotFoundException("No customers found.");
+
+        // initialize the list of customerResponse
+        List<CustomerResponse> customerResponses=new ArrayList<>(customers.size());
+        for(Customer customer:customers){
+            CustomerResponse customerResponse=CustomerTransformer.customerToCustomerResponse(customer);
+            customerResponses.add(customerResponse);
+        }
+
+        return customerResponses;
+    }
+
+
+    // method to delete the customer by id
+    public void deleteById(Integer id){
+        Customer customer=customerRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(String.format("Customer with id: %d not found.",id)));
+       customerRepository.delete(customer);
+       return;
     }
 
 
